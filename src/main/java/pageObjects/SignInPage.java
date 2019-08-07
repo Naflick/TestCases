@@ -6,25 +6,27 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SignInPage extends AbstractPage{
-    By emailInput = By.id("signInEmail");
+    private By emailInput = By.id("signInEmail");
+    private By passwordInput = By.id("signInPassword");
+    private By signInButtom = By.xpath("//*[contains(@class,'form__sign-in')]");
+    private By erroeMasseg = By.xpath("//*[contains(@class,'error-message ng-binding')]");
+
 
     public SignInPage enterEmail(String email){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(emailInput)).sendKeys(email);
+        AbstractPage.getElement(emailInput).sendKeys(email);
         return this;
     }
 
     public SignInPage enterPassword (String password){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("signInPassword"))).sendKeys(password);
-
+        AbstractPage.getElement(passwordInput).sendKeys(password);
         return this;
     }
 
     public  HomePage clickSignInButtom (){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,'form__sign-in')]"))).click();
+        AbstractPage.getElement(signInButtom).click();
         return new HomePage();
     }
     public boolean checkErroeMasseg(){
-        boolean isDisplay =wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,'error-message ng-binding')]"))).isDisplayed();
-        return isDisplay;
+        return AbstractPage.getElement(erroeMasseg).isDisplayed();
     }
 }

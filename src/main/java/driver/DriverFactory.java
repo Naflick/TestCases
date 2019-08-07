@@ -27,6 +27,7 @@ public abstract class DriverFactory {
     public static void quitDriver(){
         if(webDriver != null){
             webDriver.quit();
+            webDriver =null;
         }
     }
 }

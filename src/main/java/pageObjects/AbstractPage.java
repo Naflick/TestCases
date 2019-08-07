@@ -9,18 +9,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AbstractPage {
 
-    public static WebDriverWait wait;// = new WebDriverWait(DriverFactory.getDriver(),20);
-
+    public static WebDriverWait wait;
+    public static String url = "https://training.by/#/Home";
 
     public AbstractPage(){
         DriverFactory.initDriver("Chrome");
         wait = new WebDriverWait(DriverFactory.getDriver(),20);
     }
 
-    public void proceedToPage(String url){
+    public void proceedToPage(){
         DriverFactory.getDriver().get(url);
     }
-    protected WebElement getElement(By locator){
+
+    public static WebElement getElement(By locator){
         WebElement webElement =wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         return  webElement;
     }
